@@ -12,5 +12,6 @@ namespace Chess.Entities.Models
         public string NickName { get; set; }
         public string Password { get; set; }
         public int Elo { get; set; }
+        public string Token { get; set; }
     }
 }

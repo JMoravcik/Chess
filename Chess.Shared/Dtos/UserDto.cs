@@ -8,6 +8,8 @@ namespace Chess.Shared.Dtos
 {
     public class UserDto : Dto
     {
+        public const string HeaderTokenKey = "userTokenKey";
+        public string Token { get; set; }
         public string NickName { get; set; }
         public int Elo { get; set; }
     }

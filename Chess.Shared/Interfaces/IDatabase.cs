@@ -10,7 +10,7 @@ namespace Chess.Shared.Interfaces
     public interface IDatabase
     {
         Task<UserDto> GetUser(string nickName, string password);
+        Task<UserDto> GetUser(string token);
         Task<UserDto> AddUser(UserDto userDto);
-
     }
 }

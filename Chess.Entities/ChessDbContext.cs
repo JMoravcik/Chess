@@ -29,6 +29,10 @@ namespace Chess.Entities
             return userDto;
         }
 
-
+        public async Task<UserDto> GetUser(string token)
+        {
+            var userDb = await UserDbs.FirstOrDefaultAsync(u => u.Token == token);
+            return (UserDto)userDb;
+        }
     }
 }
