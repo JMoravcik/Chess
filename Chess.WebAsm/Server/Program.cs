@@ -9,8 +9,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ChessDbContext>(options =>
 {
-    options.UseSqlServer<
-})
+});
 
 var app = builder.Build();
 
