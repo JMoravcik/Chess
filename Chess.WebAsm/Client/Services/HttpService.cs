@@ -25,6 +25,11 @@ namespace Chess.WebAsm.Client.Services
         }
         public void SetToken(string token)
         {
+            if (HttpClient.DefaultRequestHeaders.Contains(UserDto.HeaderTokenKey))
+            {
+                HttpClient.DefaultRequestHeaders.Remove(UserDto.HeaderTokenKey);
+            }
+
             HttpClient.DefaultRequestHeaders.Add(UserDto.HeaderTokenKey, token);
         }
 

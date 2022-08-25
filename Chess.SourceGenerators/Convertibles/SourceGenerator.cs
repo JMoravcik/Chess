@@ -42,14 +42,15 @@ namespace {typeSymbol.ContainingNamespace.ToDisplayString()}
             return result;
         }}
 
-        public void WriteTo({typeArgument.ContainingNamespace.ToDisplayString()}.{typeArgument.Name} arg)
+        public override {typeArgument.ContainingNamespace.ToDisplayString()}.{typeArgument.Name} WriteTo({typeArgument.ContainingNamespace.ToDisplayString()}.{typeArgument.Name} arg)
         {{
-            if (arg == null) return;
+            if (arg == null) return arg;
 
 {GenerateConvertion("arg", "this")}
+            return arg;
         }}
 
-        public void SetFrom({typeArgument.ContainingNamespace.ToDisplayString()}.{typeArgument.Name} arg)
+        public override void SetFrom({typeArgument.ContainingNamespace.ToDisplayString()}.{typeArgument.Name} arg)
         {{
             if (arg == null) return;
 

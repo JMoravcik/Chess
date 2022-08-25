@@ -19,8 +19,8 @@ namespace Chess.WebAsm.Client.Services
             }
         }
 
-        public UserDto _user = null;
-        public UserDto User 
+        public UserDto? _user = null;
+        public UserDto? User 
         {
             get => _user;
             private set
@@ -29,14 +29,22 @@ namespace Chess.WebAsm.Client.Services
                 if (value != null)
                 {
                     httpService.SetToken(value.Token);
-                    chessHubService.Start(value);
+                    _ = memoryService.Set(UserDto.HeaderTokenKey, value.Token);
+                    chessHubService.Start(value)
+                        .ContinueWith(r =>
+                        {
+                            IsLoggedIn = true;
+                        });
                 }
                 else
                 {
-                    chessHubService.Stop();
+                    _ = memoryService.Remove(UserDto.HeaderTokenKey);
+                    chessHubService.Stop()
+                        .ContinueWith(r =>
+                        {
+                            IsLoggedIn = false;
+                        });
                 }
-
-                IsLoggedIn = _user != null;
             }
         }
 
@@ -73,7 +81,6 @@ namespace Chess.WebAsm.Client.Services
 
         public async Task Login(LoginRequest loginRequest)
         {
-            loginRequest.Password = loginRequest.Password.ToSha256();
             var response = await userLinker.Login(loginRequest);
             if (!string.IsNullOrEmpty(response.ErrorMessage))
             {
@@ -93,6 +100,16 @@ namespace Chess.WebAsm.Client.Services
             }
             User = response.User;
 
+        }
+
+        public async Task Logout()
+        {
+            var response = await userLinker.Logout();
+            if (!string.IsNullOrEmpty(response.ErrorMessage))
+            {
+                await jsService.Alert(response.ErrorMessage);
+            }
+            User = null;
         }
     }
 }

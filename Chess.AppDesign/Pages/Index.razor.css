@@ -1,3 +1,20 @@
 ﻿.page-content {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+}
 
+.side-menu {
+    box-shadow: 2px 2px 2px 2px #dddddd80;
+    padding-top: 12px;
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 100%;
+    height: 100%;
+}
+
+.game-content {
+    width: 100%;
+    height: 100%;
 }

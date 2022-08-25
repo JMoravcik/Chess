@@ -1,0 +1,21 @@
+﻿.menu-button {
+    width: max-content;
+    height: 100%;
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    border-right: solid 1px black;
+    transition-duration: 0.3s;
+}
+
+    .menu-button.disable {
+        background-color: #00000020;
+        pointer-events: none;
+    }
+
+.menu-button:hover {
+    background-color: #00000020;
+}

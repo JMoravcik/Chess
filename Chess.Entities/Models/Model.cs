@@ -17,5 +17,8 @@ namespace Chess.Entities.Models
         public string CreatedBy { get; set; }
         public DateTime UpdatedAt { get; set; }
         public string UpdatedBy { get; set; }
+
+        public abstract TDto WriteTo(TDto arg);
+        public abstract void SetFrom(TDto arg);
     }
 }

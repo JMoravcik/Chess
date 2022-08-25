@@ -3,3 +3,12 @@
     width: 100vw;
     height: 100vh;
 }
+
+.content {
+    position: relative;
+    top: 50px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 50px);
+    overflow: auto;
+}

@@ -69,6 +69,7 @@ namespace Chess.Core.Services
             }
             else
             {
+                await SetToken(user);
                 return new LoginResponse()
                 {
                     User = user,
@@ -93,6 +94,13 @@ namespace Chess.Core.Services
                     User = user,
                 };
             }
+        }
+
+        public async Task<LogoutResponse> Logout()
+        {
+            User.Token = null;
+            await Database.UpdateUser(User);
+            return new LogoutResponse();
         }
     }
 }

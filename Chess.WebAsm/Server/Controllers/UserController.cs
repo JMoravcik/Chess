@@ -33,6 +33,21 @@ namespace Chess.WebAsm.Server.Controllers
             try
             {
                 var response = await Service.Login(request);
+
+                return response;
+            }
+            catch (Exception e)
+            {
+                return new() { ErrorMessage = e.Message };
+            }
+        }
+
+        [HttpGet(Routes.User_Logout)]
+        public async Task<LogoutResponse> Logout()
+        {
+            try
+            {
+                var response = await Service.Logout();
                 return response;
             }
             catch (Exception e)

@@ -4,7 +4,10 @@
     <page>
         @if (UserService.IsLoggedIn.Value)
         {
-            @Body
+            <TopMenu/>
+            <div class="content">
+                @Body
+            </div>
         }
         else
         {

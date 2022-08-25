@@ -12,5 +12,6 @@ namespace Chess.AppDesign.ILinkers
         Task<LoginResponse> Login(LoginRequest loginRequest);
         Task<LoginWithTokenResponse> LoginWithToken(LoginWithTokenRequest loginWithTokenRequest);
         Task<RegisterResponse> Register(RegisterRequest registerRequest);
+        Task<LogoutResponse> Logout();
     }
 }

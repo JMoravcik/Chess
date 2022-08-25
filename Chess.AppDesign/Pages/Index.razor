@@ -1,2 +1,16 @@
 ﻿@page "/"
-<Button Clicked="PlayRandomGame" Title="Play random game" />
+<div class="page-content">
+    <div class="side-menu">
+        <Button Clicked="PlayRandomGame" Title="Play random game" Style="width: 100%" />
+        Or challenge your opponent:
+        <Table TRow="UserDto" Data="userDtos" Style="width: 100%" RowClicked="ChallengeUser">
+            <Row Context="rowData">
+                <TableCell Title="nick name">@rowData.NickName </TableCell>
+                <TableCell Title="elo">@rowData.Elo </TableCell>
+            </Row>
+        </Table>
+    </div>
+    <div class="game-content">
+
+    </div>
+</div>

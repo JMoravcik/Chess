@@ -1,5 +1,6 @@
 ﻿using Chess.AppDesign.IServices;
 using Chess.Shared.Communications.Users;
+using Chess.Shared.Extensions;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -14,9 +15,10 @@ namespace Chess.AppDesign.Shared
         [Inject] IUserService UserService { get; set; }
         LoginRequest loginRequest { get; set; } = new LoginRequest();
         RegisterRequest registerRequest { get; set; } = new RegisterRequest();
-
+        string Password { get; set; }
         private Task LogIn()
         {
+            loginRequest.Password = Password.ToSha256();
             return UserService.Login(loginRequest);
         }
         private Task Register()

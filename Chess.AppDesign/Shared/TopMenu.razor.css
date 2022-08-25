@@ -1,0 +1,8 @@
+﻿.top-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 50px;
+    width: 100%;
+    box-shadow: 2px 2px 2px 2px #dddddd80;
+}

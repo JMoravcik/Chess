@@ -22,5 +22,6 @@ namespace Chess.AppDesign.IServices
 
         Task Login(LoginRequest loginRequest);
         Task Register(RegisterRequest loginRequest);
+        Task Logout();
     }
 }

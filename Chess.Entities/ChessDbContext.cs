@@ -23,12 +23,15 @@ namespace Chess.Entities
         public ChessDbContext(DbContextOptions<ChessDbContext> options)
             : base(options)
         {
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
+            {
                 optionsBuilder.UseSqlServer(@"Server=localhost;Database=chess-dev;Trusted_Connection=True;");
+            }
         }
 
         public async Task<UserDto> GetUser(string nickName, string password)
@@ -46,10 +49,10 @@ namespace Chess.Entities
 
         public async Task<UserDto> AddUser(UserDto userDto, string password)
         {
-            var result = UserDbs.AddEntities<UserDb, UserDto>("[Program]", (UserDb)userDto);
+            var result = UserDbs.AddEntities("[Program]", userDto);
             result[0].Password = password;
             await SaveChangesAsync();
-            return userDto;
+            return (UserDto)result[0];
         }
 
         public async Task<UserDto> GetUser(string token)
@@ -60,9 +63,9 @@ namespace Chess.Entities
 
         public async Task<UserDto> UpdateUser(UserDto userDto)
         {
-            var result = UserDbs.UpdateEntities<UserDb, UserDto>(userDto.NickName, (UserDb)userDto);
+            var result = UserDbs.UpdateEntities(userDto.NickName, userDto);
             await this.SaveChangesAsync();
-            return userDto;
+            return (UserDto)result[0];
         }
 
         public Task<bool> UserExists(string nickName)

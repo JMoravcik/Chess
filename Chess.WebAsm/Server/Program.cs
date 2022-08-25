@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Chess.WebAsm.Server.Hubs;
 using Chess.Shared;
 using Microsoft.AspNetCore.SignalR;
+using Chess.WebAsm.Server.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,17 +17,19 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<IDatabase, ChessDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Isonsoft.Chain.Api.Entities"));
+
 });
 builder.Services.AddChessCore();
 builder.Services.AddSignalR()
     .AddHubOptions<ChessHub>(options =>
     {
+
         options.AddFilter<ChessHubFilter>();
     });
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
-
+builder.Services.AddHostedService<ChessHubService>();
 var app = builder.Build();
 UpdateDatabase(app);
 // Configure the HTTP request pipeline.

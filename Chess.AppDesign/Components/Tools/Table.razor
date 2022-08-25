@@ -1,0 +1,23 @@
+﻿@typeparam TRow
+
+<CascadingValue Value="this">
+    <table style=@Style >
+        <thead>
+            <tr>
+                @foreach (var header in headers)
+                {
+                    <th>@header </th>
+                }
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var row in GetRows())
+            {
+                <tr @onclick="() => OnRowClick(row)" class=@RowClasses  >
+                    @Row(row)
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</CascadingValue>

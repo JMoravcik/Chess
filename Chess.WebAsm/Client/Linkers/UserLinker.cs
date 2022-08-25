@@ -25,5 +25,10 @@ namespace Chess.WebAsm.Client.Linkers
         {
             return Post<RegisterRequest, RegisterResponse>(Routes.User_Register, registerRequest);
         }
+
+        public Task<LogoutResponse> Logout()
+        {
+            return Get<LogoutResponse>(Routes.User_Logout);
+        }
     }
 }

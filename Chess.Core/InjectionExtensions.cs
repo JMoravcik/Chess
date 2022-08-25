@@ -15,6 +15,7 @@ namespace Chess.Core
         {
             services.AddSingleton<GameManager>();
             services.AddScoped<UserService>();
+            services.AddScoped<GameService>();
             return services;
         }
     }

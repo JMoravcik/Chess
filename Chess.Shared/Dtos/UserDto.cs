@@ -12,5 +12,6 @@ namespace Chess.Shared.Dtos
         public string? Token { get; set; }
         public string NickName { get; set; }
         public int Elo { get; set; }
+        public Guid? Game { get; set; }
     }
 }

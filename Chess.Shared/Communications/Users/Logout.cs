@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chess.Shared.Data
+namespace Chess.Shared.Communications.Users
 {
-    public class GameData
+    public class LogoutRequest
     {
-
-        public int[][] IdsMap { get; set; }
+    }
+    public class LogoutResponse : Response
+    {
     }
 }
