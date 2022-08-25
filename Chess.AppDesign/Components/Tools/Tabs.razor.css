@@ -1,0 +1,30 @@
+﻿.tabs {
+    height: 30px;
+    width: max-content;
+    max-width: 100%;
+    overflow: auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.tab {
+    height: 100%;
+    width: max-content;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition-duration: 0.3s;
+}
+
+    .tab.active {
+        background-color: #000000;
+        color: white;
+    }
+
+    .tab:hover {
+        background-color: #00000020;
+    }

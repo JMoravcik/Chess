@@ -1,0 +1,21 @@
+﻿<div class="login-page">
+    <div class="login-box">
+        <Tabs >
+            <Tab Title="Login">
+                <div class="login-content">
+                    <StringEdit Label="Nick name" @bind-value="loginRequest.Nickname" />
+                    <StringEdit Type="StringEditTypes.password" Label="Password" @bind-value="loginRequest.Password" />
+                    <Button Clicked="LogIn" Title="Login"/>
+                </div>
+            </Tab>
+            <Tab Title="Register">
+                <div class="login-content">
+                    <StringEdit Label="Nick name" @bind-value="registerRequest.NickName" />
+                    <StringEdit Type="StringEditTypes.password" Label="Password" @bind-value="registerRequest.Password" />
+                    <StringEdit Type="StringEditTypes.password" Label="Repeat password" @bind-value="registerRequest.RepeatPassword" />
+                    <Button Clicked="Register" Title="Register"/>
+                </div>
+            </Tab>
+        </Tabs>
+    </div>
+</div>

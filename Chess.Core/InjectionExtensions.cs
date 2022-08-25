@@ -1,4 +1,5 @@
 ﻿using Chess.Core.Managers;
+using Chess.Core.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -10,9 +11,10 @@ namespace Chess.Core
 {
     public static class InjectionExtensions
     {
-        public static IServiceCollection UseChessCore(this IServiceCollection services)
+        public static IServiceCollection AddChessCore(this IServiceCollection services)
         {
             services.AddSingleton<GameManager>();
+            services.AddScoped<UserService>();
             return services;
         }
     }

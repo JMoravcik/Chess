@@ -1,4 +1,5 @@
-﻿using Chess.Entities;
+﻿using Chess.Core.Services;
+using Chess.Entities;
 using Chess.Shared.Dtos;
 using Chess.Shared.Interfaces;
 using Microsoft.AspNetCore.Http;
@@ -8,16 +9,18 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Chess.WebAsm.Server.Controllers
 {
-    [ApiController]
-    public abstract class AController : Controller
+    [Route("api/[controller]")]
+    public abstract class AController<TService> : Controller
+        where TService : Service
     {
-        protected UserDto User { get; set; }
+        protected TService Service { get; set; }
         private IDatabase database;
 
         private readonly bool AuthorizationNeeded;
 
-        public AController(IDatabase database, bool authorizationNeeded = false)
+        public AController(IDatabase database, TService service, bool authorizationNeeded = false)
         {
+            Service = service;
             this.database = database;
             AuthorizationNeeded = authorizationNeeded;
         }
@@ -29,20 +32,17 @@ namespace Chess.WebAsm.Server.Controllers
 
                 if (database == null) return;
 
-                User = await database.GetUser(token);
+                Service.User = await database.GetUser(token);
             }
 
             if (AuthorizationNeeded)
             {
-                if (User == null)
+                if (Service.User == null)
                 {
                     context.Result = new UnauthorizedResult();
                 }
             }
-
             await next();
-
-            base.OnActionExecutionAsync(context, next);
         }
 
     }

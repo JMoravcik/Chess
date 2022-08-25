@@ -8,6 +8,7 @@ namespace Chess.Core.Managers
 {
     public class GameManager
     {
+        Dictionary<Guid, Game> Games { get; set; } = new Dictionary<Guid, Game>();
 
     }
 }

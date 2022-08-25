@@ -11,47 +11,54 @@ namespace Chess.Entities
 {
     internal static class DbSetExtensions
     {
-        internal static void AddEntities<TEntity, TDto>(this DbSet<TEntity> dbSet, string createdBy, params TDto[] dtos)
+        internal static List<TEntity> AddEntities<TEntity, TDto>(this DbSet<TEntity> dbSet, string createdBy, params TEntity[] entities)
             where TEntity : Model<TDto>
             where TDto : Dto
         {
-            if (dtos == null) return;
-            foreach (var dto in dtos)
+            var result = new List<TEntity>();
+            if (entities == null) return result;
+            foreach (var entity in entities)
             {
-                TEntity entity = Convert.ChangeType(dto, typeof(TEntity)) as TEntity;
                 entity.Id = Guid.NewGuid();
                 entity.CreatedAt = DateTime.Now;
                 entity.CreatedBy = createdBy;
                 entity.UpdatedBy = createdBy;
                 entity.UpdatedAt = DateTime.Now;
+                result.Add(entity);
                 dbSet.Add(entity);
             }
+            return result;
         }
 
-        internal static void UpdateEntities<TEntity, TDto>(this DbSet<TEntity> dbSet, string updatedBy, params TDto[] dtos)
+        internal static List<TEntity> UpdateEntities<TEntity, TDto>(this DbSet<TEntity> dbSet, string updatedBy, params TEntity[] entities)
             where TEntity : Model<TDto>
             where TDto : Dto
         {
-            if (dtos == null) return;
-            foreach (var dto in dtos)
+            var result = new List<TEntity>();
+
+            if (entities == null) return result;
+            foreach (var entity in entities)
             {
-                TEntity entity = Convert.ChangeType(dto, typeof(TEntity)) as TEntity;
                 entity.UpdatedBy = updatedBy;
                 entity.UpdatedAt = DateTime.Now;
+                result.Add(entity);
                 dbSet.Update(entity);
             }
+            return result;
         }
 
-        internal static void RemoveEntities<TEntity, TDto>(this DbSet<TEntity> dbSet, string updatedBy, params TDto[] dtos)
+
+        internal static List<TEntity> RemoveEntities<TEntity, TDto>(this DbSet<TEntity> dbSet, string updatedBy, params TEntity[] entities)
             where TEntity : Model<TDto>
             where TDto : Dto
         {
-            if (dtos == null) return;
-            foreach (var dto in dtos)
+            var result = new List<TEntity>();
+            if (entities == null) return result;
+            foreach (var entity in entities)
             {
-                TEntity entity = Convert.ChangeType(dto, typeof(TEntity)) as TEntity;
                 dbSet.Remove(entity);
             }
+            return result;
         }
     }
 }

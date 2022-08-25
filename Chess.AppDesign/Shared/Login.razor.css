@@ -1,0 +1,22 @@
+﻿.login-page {
+    display: flex;
+    min-height: 100%;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f7f7;
+}
+
+.login-box {
+    background-color: #ffffff;
+    width: 250px;
+    height: 300px;
+    box-shadow: 2px 2px 2px 2px #dddddd40;
+    padding: 25px;
+}
+
+.login-content {
+    display: flex;
+    flex-direction: column;
+    row-gap: 12px;
+}

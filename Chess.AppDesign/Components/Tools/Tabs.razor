@@ -1,0 +1,11 @@
+﻿<CascadingValue Value="this">
+    <div class="tab-content">
+        <div class="tabs">
+            @foreach (var tab in tabs)
+            {
+                <div @onclick="() => tabClicked(tab)" class="tab @(ActiveTab == tab ? "active" : "")">@tab</div>
+            }
+        </div>
+        @ChildContent
+    </div>
+</CascadingValue>

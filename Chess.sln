@@ -15,9 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.Entities", "Chess.Ent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.SourceGenerators", "Chess.SourceGenerators\Chess.SourceGenerators.csproj", "{DE54164A-1804-49AB-BDFA-B9CAEEB2C56F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.WebAsm.Server", "Chess.WebAsm\Server\Chess.WebAsm.Server.csproj", "{47F5AC8A-CCAB-4F17-B12B-6481A1009EFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.WebAsm.Server", "Chess.WebAsm\Server\Chess.WebAsm.Server.csproj", "{47F5AC8A-CCAB-4F17-B12B-6481A1009EFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chess.WebAsm.Client", "Chess.WebAsm\Client\Chess.WebAsm.Client.csproj", "{3B02C1D1-A9E9-442D-A571-B33D86728258}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chess.WebAsm.Client", "Chess.WebAsm\Client\Chess.WebAsm.Client.csproj", "{3B02C1D1-A9E9-442D-A571-B33D86728258}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
