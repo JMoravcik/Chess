@@ -9,6 +9,11 @@ namespace Chess.Core.Pieces
     public class Knight : Piece
     {
         public const int PieceId = 3;
+
+        public override int GetId()
+        {
+            return Owner.PlayerColor == PlayerColors.White ? PieceId : PieceId + 6;
+        }
         internal Knight(Player owner, IChessboard chessboard) : base(owner, chessboard)
         {
         }

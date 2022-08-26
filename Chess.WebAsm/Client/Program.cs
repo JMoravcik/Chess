@@ -16,7 +16,7 @@ builder.Services.AddScoped<IJsService, JsService>();
 builder.Services.AddScoped<MemoryService>();
 builder.Services.AddSingleton<HttpService>();
 builder.Services.AddScoped<IUserLinker, UserLinker>();
-builder.Services.AddScoped<IChessHubService, ChessHubService>();
+builder.Services.AddScoped<IChessHubService, HubService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
 await builder.Build().RunAsync();

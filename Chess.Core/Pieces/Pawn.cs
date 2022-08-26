@@ -36,6 +36,11 @@ namespace Chess.Core.Pieces
             }
         }
 
+        public override int GetId()
+        {
+            return Owner.PlayerColor == PlayerColors.White ? PieceId : PieceId + 6;
+        }
+
         internal override void AimFields()
         {
             Field field;

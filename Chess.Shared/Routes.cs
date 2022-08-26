@@ -17,8 +17,20 @@ namespace Chess.Shared
 
         public const string ChessHubServer_Connected = "Connected";
         public const string ChessHubServer_GetActiveUserList = "GetActiveUserList";
+        public const string ChessHubServer_PlayRandomGame = "PlayRandomGame";
+        public const string ChessHubServer_MovePlayer = "MovePlayer";
+        public const string ChessHubServer_Promoting = "Promoting";
+        public const string ChessHubServer_PromovePiece = "PromovePiece";
+        public const string ChessHubServer_GetData = "GetData";
 
+        public const string ChessHubClient_OperationFailed = "OperationFailed";
+        public const string ChessHubClient_Waiting = "Waiting";
         public const string ChessHubClient_StartGame = "StartGame";
+        public const string ChessHubClient_PlayerMove = "PlayerMove";
+        public const string ChessHubClient_InvalidMove = "InvalidMove";
+        public const string ChessHubClient_GameMove = "GameMove";
+        public const string ChessHubClient_GameEnded = "GameEnded";
+        public const string ChessHubClient_Promotion = "Promotion";
         public const string ChessHubClient_ActiveUserList = "ActiveUserList";
         public const string ChessHubClient_UserConnected = "UserConnected";
         public const string ChessHubClient_UserDisconnected = "UserDisconnected";

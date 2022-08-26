@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 [assembly: InternalsVisibleTo("Chess.Core.Tests")]
 namespace Chess.Core
 {
-    public delegate void GameStateChanged();
+    public delegate void GameStateChanged(Game game);
     public class Game
     {
         public event GameStateChanged GameStateChanged;
@@ -28,7 +28,7 @@ namespace Chess.Core
                 {
                     StartGame();
                 }
-                GameStateChanged?.Invoke();
+                GameStateChanged?.Invoke(this);
             }
         }
 
@@ -50,7 +50,7 @@ namespace Chess.Core
 
         public IChessboard Chessboard => chessboard;
 
-        public List<List<int>> Map { get; } = null;
+        private readonly List<List<int>> map = null;
 
         private void StartGame()
         {
@@ -66,7 +66,7 @@ namespace Chess.Core
         private void PrepareChessboard()
         {
             chessboard = new Chessboard(black, white);
-            if (Map == null)
+            if (map == null)
             {
                 SetDefaultChessboard();
             }
@@ -81,7 +81,7 @@ namespace Chess.Core
             ValidateCustomMapFormat();
             for (int i = 0; i < Rows; i++)
             {
-                var row = Map[i];
+                var row = map[i];
                 for (int j = 0; j < Cols; j++)
                 {
                     int n = row[j];
@@ -127,10 +127,10 @@ namespace Chess.Core
         {
             bool blackKing = false;
             bool whiteKing = false;
-            if (Map.Count != Rows) throw new Exception("Bad format of custom map (there is not 8 rows)");
+            if (map.Count != Rows) throw new Exception("Bad format of custom map (there is not 8 rows)");
             for (int i = 0; i < 8; i++)
             {
-                var row = Map[i];
+                var row = map[i];
                 if (row.Count != Cols) throw new Exception($"Bad format of custom map (in row n.{i} there is not 8 rows)");
                 for (int j = 0; j < Cols; j++)
                 {
@@ -190,7 +190,7 @@ namespace Chess.Core
         /// </param>
         public Game(List<List<int>> map)
         {
-            Map = map;
+            this.map = map;
         }
 
         public Player JoinGame(string name)
@@ -252,6 +252,17 @@ namespace Chess.Core
             return PlayerMove(player, piece, field);
         }
 
+
+        internal MoveResult PlayerMove(Player player, string move)
+        {
+            string[] moveSplit = move.Split(' ');
+            var fromField = Chessboard.Get(moveSplit[0]);
+            if (fromField.Occupant == null) return new InvalidMove("You are moving empty place!");
+            var toField = Chessboard.Get(moveSplit[1]);
+
+            return PlayerMove(player, fromField.Occupant, toField);
+        }
+
         public MoveResult PlayerMove(Player player, Piece piece, Field toField)
         {
             if (piece == null || toField == null) return new InvalidMove("piece or toField have no instance of object!");
@@ -273,6 +284,7 @@ namespace Chess.Core
                 chessboard.Reset();
                 return new InvalidMove("Your move ends in check!");
             }
+
             if (piece is Pawn pawn && pawn.UpgradeAvailable)
             {
                 player.PlayerState = PlayerStates.Promoting;
@@ -375,6 +387,14 @@ namespace Chess.Core
             }
 
             return false;
+        }
+
+        internal MoveResult UpgradePawnAndCompletePlayerMove(Player player, string pawnCoordination, int pieceId)
+        {
+            var field = Chessboard.Get(pawnCoordination);
+            if (field.Occupant == null) return new InvalidMove("There is no pawn!");
+            if (!(field.Occupant is Pawn pawn)) return new InvalidMove("There is some piece but its not pawn!");
+            return UpgradePawnAndCompletePlayerMove(player, pawn, pieceId);
         }
     }
 }

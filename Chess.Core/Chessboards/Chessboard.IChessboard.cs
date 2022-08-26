@@ -17,7 +17,7 @@ namespace Chess.Core
             }
 
             coordinates = coordinates.ToLower();
-            int row = 7 - (coordinates[0] - '1');
+            int row = (coordinates[0] - '1');
             int column = coordinates[1] - 'a';
             if (row < 0 || row > 7 
              || column < 0 || column > 7)
@@ -26,6 +26,20 @@ namespace Chess.Core
             }
 
             return fieldTable[row][column];
+        }
+
+        public int[][] GetChessboardSymbolMap()
+        {
+            int[][] result = new int[8][];
+            foreach (var row in fieldTable)
+            {
+                result[row.Row] = new int[8];
+                foreach (var field in row)
+                {
+                    result[row.Row][field.Col] = field.Occupant == null ? 0 : field.Occupant.GetId();
+                }
+            }
+            return result;
         }
 
         public IEnumerator<FieldRow> GetEnumerator()

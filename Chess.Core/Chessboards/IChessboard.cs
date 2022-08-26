@@ -19,5 +19,7 @@ namespace Chess.Core
         public Field Get(string coordinates);
 
         public void ResetAim();
+
+        public int[][] GetChessboardSymbolMap();
     }
 }

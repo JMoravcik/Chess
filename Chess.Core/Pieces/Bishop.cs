@@ -9,6 +9,11 @@ namespace Chess.Core.Pieces
     public class Bishop : Piece
     {
         public const int PieceId = 4;
+
+        public override int GetId()
+        {
+            return Owner.PlayerColor == PlayerColors.White ? PieceId : PieceId + 6;
+        }
         internal Bishop(Player owner, IChessboard chessboard) : base(owner, chessboard)
         {
 

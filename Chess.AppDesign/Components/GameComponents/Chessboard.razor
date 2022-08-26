@@ -1,3 +1,38 @@
-﻿<svg viewBox="0 0 320 320">
-
-</svg>
+﻿@if (Rows != null)
+{
+    @if (pawnMove != null)
+    {
+        <div class="promotions">
+            <img src=@GetImageFromId(2) width="48px" @onclick="async () => await PromoteTo(2)"/>
+            <img src=@GetImageFromId(3) width="48px" @onclick="async () => await PromoteTo(3)"/>
+            <img src=@GetImageFromId(4) width="48px" @onclick="async () => await PromoteTo(4)"/>
+            <img src=@GetImageFromId(5) width="48px" @onclick="async () => await PromoteTo(5)"/>
+        </div>
+    }
+    <svg viewBox="0 0 320 320" class="chessboard-svg">
+        @foreach (var row in Rows)
+        {
+            @foreach (var field in row)
+            {
+                <rect x=@(field.RealCol * 40)
+                        y=@(field.RealRow * 40)
+                        width="40"
+                        height="40"
+                        fill=@GetFieldColor(field)
+                        stroke=@( choosenField == field ? "green" : "" )
+                        stroke-width="2" @onclick="async () => OnEmptyFieldClick(field)"
+                    />
+                if (!string.IsNullOrEmpty(field.ImageUrl))
+                {
+                    <image x=@(field.RealCol * 40)
+                            y=@(field.RealRow * 40) 
+                            width="40"
+                            height="40"
+                            href=@field.ImageUrl
+                            @onclick="async () => await OnFieldClick(field)"
+                            />
+                }
+            }
+        }
+    </svg>
+}

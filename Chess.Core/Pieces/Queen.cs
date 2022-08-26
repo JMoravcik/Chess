@@ -10,6 +10,11 @@ namespace Chess.Core.Pieces
     {
         public const int PieceId = 5;
 
+        public override int GetId()
+        {
+            return Owner.PlayerColor == PlayerColors.White ? PieceId : PieceId + 6;
+        }
+
         internal Queen(Player owner, IChessboard chessboard) : base(owner, chessboard)
         {
             

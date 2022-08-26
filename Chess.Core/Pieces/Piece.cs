@@ -20,8 +20,10 @@ namespace Chess.Core.Pieces
 
         public Field Position { get; internal set; }
 
-        public int Row => Position.Row;
-        public int Col => Position.Col;
+        public int Row => Position?.Row ?? -2;
+        public int Col => Position?.Col ?? -2;
+
+        public string GetChessCoordination() => $"{Row + 1}{(char)('A' + Col)}";
 
         private bool ValidateMoveTo(Field field)
         {
@@ -34,6 +36,8 @@ namespace Chess.Core.Pieces
             }
             return false;
         }
+
+        public abstract int GetId();
 
         public abstract IEnumerable<Field> GetAvailableMoves();
 

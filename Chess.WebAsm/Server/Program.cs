@@ -19,6 +19,7 @@ builder.Services.AddDbContext<IDatabase, ChessDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("Isonsoft.Chain.Api.Entities"));
 
 });
+builder.Services.AddSingleton(isp => isp);
 builder.Services.AddChessCore();
 builder.Services.AddSignalR()
     .AddHubOptions<ChessHub>(options =>

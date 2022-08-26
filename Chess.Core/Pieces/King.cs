@@ -9,6 +9,11 @@ namespace Chess.Core.Pieces
     public class King : Piece
     {
         public const int PieceId = 6;
+
+        public override int GetId()
+        {
+            return Owner.PlayerColor == PlayerColors.White ? PieceId : PieceId + 6;
+        }
         internal bool CanDoCastling { get; set; }
 
         internal King(Player owner, IChessboard chessboard) : base(owner, chessboard)

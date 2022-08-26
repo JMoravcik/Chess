@@ -1,1 +1,22 @@
 ﻿
+.chessboard {
+    height: 640px;
+    width: 640px;
+    max-width: 640px;
+    max-height: 640px;
+    overflow: hidden;
+}
+
+.chessboard-svg {
+    max-width: 600px;
+}
+
+.chessboard-content {
+    max-width: 640px;
+}
+
+.promotions {
+    display: flex;
+    flex-direction: row;
+    row-gap: 12px;
+}

@@ -16,7 +16,7 @@ namespace Chess.AppDesign.Pages
         List<UserDto> userDtos { get; set; } = new List<UserDto>();
         private async Task PlayRandomGame()
         {
-
+            chessHubService.PlayRandomGame();
         }
 
         private async Task ChallengeUser(UserDto userDto)

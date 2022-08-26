@@ -32,5 +32,11 @@ namespace Chess.Core.Pieces
             Chessboard[row][col == 0 ? 3 : 5].Occupant = this;
         }
 
+
+        public override int GetId()
+        {
+            return Owner.PlayerColor == PlayerColors.White ? PieceId : PieceId + 6;
+        }
+
     }
 }
